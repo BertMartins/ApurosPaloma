@@ -53,6 +53,17 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
+        #loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+
+        }
+
+
         #output {
             height: 33vw;
         }
@@ -91,21 +102,34 @@
 
     <textarea id="output" readonly></textarea>
 
+    <div id="loading">
+        <img src="loading.gif" alt="Loading...">
+    </div>
+
+
     <script>
         function gerarTXT() {
-            var prefixo = document.getElementById('prefixo').value;
-            var numeroInicial = parseInt(document.getElementById('numeroInicial').value);
-            var numeroFinal = parseInt(document.getElementById('numeroFinal').value);
-            var sufixo = document.getElementById('sufixo').value;
+            console.log("Loading started");
+            document.getElementById('loading').style.display = 'block';
 
-            var txtOutput = '';
+            setTimeout(() => {
+                var prefixo = document.getElementById('prefixo').value;
+                var numeroInicial = parseInt(document.getElementById('numeroInicial').value);
+                var numeroFinal = parseInt(document.getElementById('numeroFinal').value);
+                var sufixo = document.getElementById('sufixo').value;
 
-            for (var i = numeroInicial; i <= numeroFinal; i++) {
-                txtOutput += prefixo + i + sufixo + '\n';
-            }
+                var txtOutput = '';
 
-            document.getElementById('output').value = txtOutput;
+                for (var i = numeroInicial; i <= numeroFinal; i++) {
+                    txtOutput += prefixo + i + sufixo + '\n';
+                }
+
+                document.getElementById('output').value = txtOutput;
+                document.getElementById('loading').style.display = 'none';
+                console.log("Loading finished");
+            }, 1000);
         }
+
     </script>
 
 </body>
