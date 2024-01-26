@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de TXT</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    input {
+      padding: 5px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Gerador de TXT</h2>
+
+  <form id="form">
+    <label for="numeroInicial">Número Inicial:</label>
+    <input type="number" id="numeroInicial" required>
+
+    <label for="numeroFinal">Número Final:</label>
+    <input type="number" id="numeroFinal" required>
+
+    <button type="button" onclick="gerarTXT()">Gerar TXT</button>
+  </form>
+
+  <textarea id="output" readonly></textarea>
+
+  <script>
+    function gerarTXT() {
+      var numeroInicial = parseInt(document.getElementById('numeroInicial').value);
+      var numeroFinal = parseInt(document.getElementById('numeroFinal').value);
+
+      var txtOutput = '';
+
+      for (var i = numeroInicial; i <= numeroFinal; i++) {
+        txtOutput += '-' + i + '/\n';
+      }
+
+      document.getElementById('output').value = txtOutput;
+    }
+  </script>
+
+</body>
+</html>
