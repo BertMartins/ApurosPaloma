@@ -1,63 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de TXT</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 50px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de formula Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
 
-    input {
-      padding: 5px;
-      margin-right: 10px;
-    }
+        input {
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
 
-    button {
-      padding: 8px;
-      cursor: pointer;
-    }
+        button {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
 
-    textarea {
-      width: 100%;
-      height: 200px;
-      margin-top: 20px;
-    }
-  </style>
+        button:hover {
+            background-color: #45a049;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #output {
+            height: 33vw;
+        }
+    </style>
 </head>
+
 <body>
 
-  <h2>Gerador de TXT</h2>
+    <h2>Gerador de forma Excel</h2>
 
-  <form id="form">
-    <label for="numeroInicial">Número Inicial:</label>
-    <input type="number" id="numeroInicial" required>
+    <div id="form" style="display: flex;flex-direction: row;align-items: center;">
+        <div>
+            <label for="prefixo">Texto antes do número:</label>
+            <input type="text" id="prefixo" required="">
+        </div>
 
-    <label for="numeroFinal">Número Final:</label>
-    <input type="number" id="numeroFinal" required>
+        <div>
+            <label for="numeroInicial">Número Inicial:</label>
+            <input type="number" id="numeroInicial" required="">
+        </div>
 
-    <button type="button" onclick="gerarTXT()">Gerar TXT</button>
-  </form>
+        <div>
+            <label for="numeroFinal">Número Final:</label>
+            <input type="number" id="numeroFinal" required="">
+        </div>
 
-  <textarea id="output" readonly></textarea>
+        <div>
+            <label for="sufixo">Texto depois do número:</label>
+            <input type="text" id="sufixo" required="">
+        </div>
 
-  <script>
-    function gerarTXT() {
-      var numeroInicial = parseInt(document.getElementById('numeroInicial').value);
-      var numeroFinal = parseInt(document.getElementById('numeroFinal').value);
+        <div>
+            <button type="button" onclick="gerarTXT()">Gerar TXT</button>
+        </div>
+    </div>
 
-      var txtOutput = '';
+    <textarea id="output" readonly></textarea>
 
-      for (var i = numeroInicial; i <= numeroFinal; i++) {
-        txtOutput += '-' + i + '/\n';
-      }
+    <script>
+        function gerarTXT() {
+            var prefixo = document.getElementById('prefixo').value;
+            var numeroInicial = parseInt(document.getElementById('numeroInicial').value);
+            var numeroFinal = parseInt(document.getElementById('numeroFinal').value);
+            var sufixo = document.getElementById('sufixo').value;
 
-      document.getElementById('output').value = txtOutput;
-    }
-  </script>
+            var txtOutput = '';
+
+            for (var i = numeroInicial; i <= numeroFinal; i++) {
+                txtOutput += prefixo + i + sufixo + '\n';
+            }
+
+            document.getElementById('output').value = txtOutput;
+        }
+    </script>
 
 </body>
+
 </html>
